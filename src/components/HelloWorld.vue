@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <p>{{ access_token }}</p>
     <ul>
       <li>
         <a
@@ -88,7 +89,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Martes',
+      access_token: this.globalVar.access_token
     }
   }
 }
