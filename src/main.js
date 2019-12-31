@@ -4,17 +4,46 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import store from './store'
+// import VueAuth from '@websanova/vue-auth'
+import VueCookies from 'vue-cookies'
+import VueAxios from 'vue-axios'
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
-Vue.prototype.globalVar = {
-  access_token: ''
-}
+
+Vue.use(VueCookies)
+Vue.use(VueAxios, axios)
+Vue.use(router)
+/*
+Vue.use(VueAuth, {
+  auth: require('@websanova/vue-auth/drivers/auth/bearer'),
+  http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
+  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+  loginData: { url: 'http://localhost:3000/auth/login', fetchUser: false },
+  fetchData: { url: 'http://localhost:3000/auth/profile', method: 'GET', enabled: true }
+})
+*/
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next()
+  } else {
+    const token = Vue.$cookies.get('token')
+    console.log('token', token)
+    if (token === 'null' || token === '') {
+      next('/login')
+    } else {
+      next()
+    }
+  }
 })

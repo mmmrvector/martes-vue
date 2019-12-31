@@ -8,9 +8,16 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/hello',
+      name: 'hello',
+      component: HelloWorld,
+      meta: {
+        /*
+         * Vue-auth
+         * auth 有一个default属性authRedirect: { path: 'login' }
+         */
+        auth: true
+      }
     },
     {
       path: '/login',
