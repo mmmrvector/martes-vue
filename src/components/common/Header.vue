@@ -20,7 +20,12 @@ export default {
   methods: {
     handleSelect (key, keyPath) {
       if (key === '1-1') {
-        this.$router.push('/articles').catch(err => err)
+        this.$router.push({
+          path: '/articles',
+          query: {
+            p: 1, ps: 3
+          }
+        }).catch(err => err)
       } else if (key === '1-3') {
         this.$router.push('/login').catch(err => err)
       }

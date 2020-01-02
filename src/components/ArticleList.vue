@@ -8,8 +8,8 @@
             <div style="padding: 14px;">
               <span>{{article.title}}</span>
               <div class = "bottom clearfix">
-                <time class="time">创建时间: {{ new Date(parseInt(article.createdAt)).toLocaleString() }}</time>
-                <el-button type="text" class="button">操作按钮</el-button>
+                <time class="time">创建时间: {{ new Date().toLocaleString() }}</time>
+                <el-button type="text" class="button" @click="getArticleDetail(article.id)">操作按钮</el-button>
               </div>
             </div>
           </el-card>
@@ -26,7 +26,7 @@ export default {
   name: 'ArticleList',
   data () {
     return {
-      articles: [],
+      articles: [{title: '文章1的标题', id: 'asdfasfhsdalf'}, {title: '文章2的标题', id: '1adfasdfasdf'}],
       article: 'article'
     }
   },
@@ -38,11 +38,13 @@ export default {
   },
   methods: {
     getArticles: async function () {
-      const res = await this.$http.get('http://localhost:3000/article/all?p=1&ps=3')
+      const p = this.$route.query.p
+      const ps = this.$route.query.ps
+      const res = await this.$http.get(`http://localhost:3000/article/all?p=${p}&ps=${ps}`)
       return res.data
     },
-    getArticleDetail: async function () {
-      this.$router.push('/article')
+    getArticleDetail: async function (id) {
+      this.$router.push(`/article/${id}`)
     }
   }
 }

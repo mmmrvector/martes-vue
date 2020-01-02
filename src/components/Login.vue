@@ -12,7 +12,8 @@
     </p>
     <p>{{ username }}</p>
     <p>{{ password }}</p>
-    <button v-on:click="logon">log in</button>
+    <el-button type="primary" round @click="logon">登录</el-button>
+    <el-button type="primary" round>注册</el-button>
   </div>
 </template>
 
@@ -67,4 +68,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

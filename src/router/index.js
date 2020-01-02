@@ -32,7 +32,7 @@ export default new Router({
       component: ArticleList
     },
     {
-      path: '/article',
+      path: '/article/:id',
       name: 'article',
       component: ArticleDetail
     }
