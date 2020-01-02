@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <!--<img src="./assets/logo.png">-->
-    <div></div>
+    <div class = "header" id = "headers"></div>
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
   components: {}
-};
+}
 </script>
 
 <style>
@@ -20,6 +20,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>

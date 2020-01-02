@@ -1,16 +1,34 @@
 <template>
-  <div class="header" v-if="isShowHeader">
-    <h1>{{ title }}</h1>
+  <div class="header">
+    <el-menu class = "navigator" mode="horizontal" @select="handleSelect">
+      <el-submenu index="1">
+        <template slot="title">{{title}}</template>
+        <el-menu-item index="1-1">articles</el-menu-item>
+        <el-menu-item index="1-2">photos</el-menu-item>
+        <el-menu-item index="1-3">login</el-menu-item>
+      </el-submenu>
+    </el-menu>
   </div>
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
-      title: "这是一个header"
-    };
+      title: 'Martes'
+    }
+  },
+  methods: {
+    handleSelect (key, keyPath) {
+      if (key === '1-1') {
+        this.$router.push('/articles').catch(err => err)
+      } else if (key === '1-3') {
+        this.$router.push('/login').catch(err => err)
+      }
+    }
   }
-};
+}
 </script>
 <style scoped>
+ .header {
+ }
 </style>

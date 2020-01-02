@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <Header></Header>
     <h1>Log in page</h1>
     <p>
       用户名:
@@ -16,51 +17,54 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import router from "../router";
+import { mapMutations } from 'vuex'
+import Header from './common/Header'
 export default {
-  name: "Login",
-  data() {
+  name: 'Login',
+  data () {
     return {
-      username: "",
-      password: ""
-    };
+      username: '',
+      password: ''
+    }
   },
-  mounted: function() {},
+  mounted: function () {},
+  components: {
+    Header
+  },
   methods: {
-    ...mapMutations(["ADD_TOKEN", "ADD_USER"]),
-    logon: function() {
-      if (!this.username || !this.password) return;
+    ...mapMutations(['ADD_TOKEN', 'ADD_USER']),
+    logon: function () {
+      if (!this.username || !this.password) return
       const data = {
         username: this.username,
         password: this.password
-      };
+      }
       this.axios
-        .post("http://localhost:3000/auth/login", data)
+        .post('http://localhost:3000/auth/login', data)
         .then(res => {
-          console.log(res.data.access_token);
-          this.$cookies.set("token", res.data.access_token, 60 * 60 * 2);
-          return res.data.access_token;
+          console.log(res.data.access_token)
+          this.$cookies.set('token', res.data.access_token, 60 * 60 * 2)
+          return res.data.access_token
         })
         .then(res => {
           this.axios
-            .get("http://localhost:3000/auth/profile", {
+            .get('http://localhost:3000/auth/profile', {
               headers: {
                 Authorization: `Bearer ${res}`
               }
             })
             .then(res => {
-              console.log(res.data);
-              this.$cookies.set("user", JSON.stringify(res.data));
-              console.log(this.$router);
-              this.$router.push("/hello");
+              console.log(res.data)
+              this.$cookies.set('user', JSON.stringify(res.data))
+              console.log(this.$router)
+              this.$router.push('/hello')
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     }
   }
-};
+}
 </script>
 
 <style scoped></style>

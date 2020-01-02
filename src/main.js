@@ -5,16 +5,22 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import store from './store'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 // import VueAuth from '@websanova/vue-auth'
 import VueCookies from 'vue-cookies'
 import VueAxios from 'vue-axios'
+import mavonEditor from 'mavon-editor'
 
 Vue.config.productionTip = false
-Vue.prototype.axios = axios
+Vue.prototype.$http = axios
 
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.use(router)
+Vue.use(ElementUI)
+Vue.use(mavonEditor)
+
 /*
 Vue.use(VueAuth, {
   auth: require('@websanova/vue-auth/drivers/auth/bearer'),
