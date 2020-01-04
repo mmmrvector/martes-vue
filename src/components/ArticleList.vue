@@ -9,7 +9,7 @@
               <span>{{article.title}}</span>
               <div class = "bottom clearfix">
                 <time class="time">创建时间: {{ new Date().toLocaleString() }}</time>
-                <el-button type="text" class="button" @click="getArticleDetail(article.id)">操作按钮</el-button>
+                <el-button type="text" class="button" @click="getArticleDetail(article._id)">操作按钮</el-button>
               </div>
             </div>
           </el-card>
@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     getArticles: async function () {
-      const p = this.$route.query.p
-      const ps = this.$route.query.ps
+      const p = this.$route.query.p || 1
+      const ps = this.$route.query.ps || 3
       const res = await this.$http.get(`http://localhost:3000/article/all?p=${p}&ps=${ps}`)
       return res.data
     },

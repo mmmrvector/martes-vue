@@ -4,14 +4,12 @@
     <h1>Log in page</h1>
     <p>
       用户名:
-      <input v-model="username" placeholder="请输入用户名" />
+      <el-input v-model="username" placeholder="请输入用户名" />
     </p>
     <p>
       密码:
-      <input type="password" v-model="password" placeholder="请输入密码" />
+      <el-input show-password v-model="password" placeholder="请输入密码" />
     </p>
-    <p>{{ username }}</p>
-    <p>{{ password }}</p>
     <el-button type="primary" round @click="logon">登录</el-button>
     <el-button type="primary" round>注册</el-button>
   </div>
@@ -58,7 +56,17 @@ export default {
               console.log(res.data)
               this.$cookies.set('user', JSON.stringify(res.data))
               console.log(this.$router)
-              this.$router.push('/hello')
+              console.log(this.$route)
+              if (!this.$route.query.from) {
+                this.$router.push('/hello')
+              } else {
+                this.$router.push({
+                  name: this.$route.query.from,
+                  params: {
+                    id: this.$route.params.id
+                  }
+                })
+              }
             })
             .catch(err => console.log(err))
         })
@@ -69,5 +77,7 @@ export default {
 </script>
 
 <style scoped>
-
+.el-input {
+  width: 150px
+}
 </style>

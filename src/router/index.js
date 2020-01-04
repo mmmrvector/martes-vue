@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import ArticleList from '../components/ArticleList'
 import ArticleDetail from '../components/ArticleDetail'
-
+import Account from '../components/Account'
 Vue.use(Router)
 
 export default new Router({
@@ -23,7 +23,7 @@ export default new Router({
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },
     {
@@ -35,6 +35,11 @@ export default new Router({
       path: '/article/:id',
       name: 'article',
       component: ArticleDetail
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account
     }
   ]
 })
