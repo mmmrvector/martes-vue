@@ -58,7 +58,7 @@ export default {
               console.log(this.$router)
               console.log(this.$route)
               if (!this.$route.query.from) {
-                this.$router.push('/hello')
+                this.$router.push('/')
               } else {
                 this.$router.push({
                   name: this.$route.query.from,
