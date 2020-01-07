@@ -3,7 +3,7 @@
       <Header></Header>
       <div class="article-show"  v-if="!editorMode">
         <mavon-editor class="md-show" v-model="articleEditContent" :toolbarsFlag="false" :scrollStyle="true" :subfield="false" defaultOpen="preview" ref=md @save="$save"/>
-        <div class="edit-button" v-if="this.$cookies.get('user').userId === this.authorId" >
+        <div class="edit-button" v-if="this.$cookies.get('user') !== null && this.$cookies.get('user').userId === this.authorId" >
           <el-button type="primary" round @click="edit">编辑</el-button>
         </div>
         <!--在编辑模式下采用mavon-editor -->
