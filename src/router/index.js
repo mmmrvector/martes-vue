@@ -5,12 +5,14 @@ import Login from '@/components/Login'
 import ArticleList from '../components/ArticleList'
 import ArticleDetail from '../components/ArticleDetail'
 import Account from '../components/Account'
+import Register from '../components/Register'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/hello',
+      path: '/',
       name: 'hello',
       component: HelloWorld,
       meta: {
@@ -40,6 +42,11 @@ export default new Router({
       path: '/account',
       name: 'account',
       component: Account
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     }
   ]
 })

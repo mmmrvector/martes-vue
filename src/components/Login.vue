@@ -11,7 +11,7 @@
       <el-input show-password v-model="password" placeholder="请输入密码" />
     </p>
     <el-button type="primary" round @click="logon">登录</el-button>
-    <el-button type="primary" round>注册</el-button>
+    <el-button type="primary" round @click="register">注册</el-button>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
         password: this.password
       }
       this.axios
-        .post('http://localhost:3000/auth/login', data)
+        .post('http://101.133.155.181:3000/auth/login', data)
         .then(res => {
           console.log(res.data.access_token)
           this.$cookies.set('token', res.data.access_token, 60 * 60 * 2)
@@ -47,7 +47,7 @@ export default {
         })
         .then(res => {
           this.axios
-            .get('http://localhost:3000/auth/profile', {
+            .get('http://101.133.155.181:3000/auth/profile', {
               headers: {
                 Authorization: `Bearer ${res}`
               }
@@ -71,6 +71,9 @@ export default {
             .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
+    },
+    register () {
+      this.$router.push('/register')
     }
   }
 }
