@@ -2,6 +2,7 @@
     <div class="article-detail">
       <Header></Header>
       <div class="article-show"  v-if="!editorMode">
+        <h1>{{this.title}}</h1>
         <mavon-editor class="md-show" v-model="articleEditContent" :toolbarsFlag="false" :scrollStyle="true" :subfield="false" defaultOpen="preview" ref=md @save="$save"/>
         <div class="edit-button" v-if="this.$cookies.get('user') !== null && this.$cookies.get('user').userId === this.authorId" >
           <el-button type="primary" round @click="edit">编辑</el-button>
@@ -12,6 +13,7 @@
         <el-input v-model="title" placeholder="please input your article title"></el-input>
         <mavon-editor class="mavonEditor" v-model="articleEditContent" :toolbars="markdownOption" :scrollStyle="true" defaultOpen="preview" ref=md @save="$save"/>
         <el-button type="primary" round @click="$save">保存</el-button>
+        <el-button type="primary" round @click="preivew">返回预览</el-button>
       </div>
     </div>
 </template>
@@ -79,6 +81,9 @@ export default {
       if (user.userId !== this.authorId) return false
       else return true
     },
+    preivew () {
+      this.editorMode = false
+    },
     // 绑定save方法
     async $save (value, render) {
       if (!this.$cookies.get('token')) {
@@ -125,7 +130,7 @@ export default {
             message: '保存成功',
             type: 'success'
           })
-          this.editorMode = false
+          // this.editorMode = false
         } else {
           this.$message({
             message: '保存失败',
@@ -161,8 +166,8 @@ export default {
             message: '保存成功',
             type: 'success'
           })
-          this.editorMode = false
-          this.$router.push(`/article/${res.data._id}`)
+          // this.editorMode = false
+          // this.$router.push(`/article/${res.data._id}`)
         } else {
           this.$message({
             message: '保存失败',
@@ -197,7 +202,6 @@ export default {
   top: 20px;
   left: 10px;
   width: 80%;
-  height: 300px;
 }
 .article-edit .el-button {
   position: relative;
@@ -208,7 +212,6 @@ export default {
     position: relative;
     top:10px;
     width: 80%;
-    height: 300px;
   }
   .edit-button {
     position:relative;

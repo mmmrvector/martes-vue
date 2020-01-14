@@ -14,14 +14,7 @@ export default new Router({
     {
       path: '/',
       name: 'hello',
-      component: HelloWorld,
-      meta: {
-        /*
-         * Vue-auth
-         * auth 有一个default属性authRedirect: { path: 'login' }
-         */
-        auth: true
-      }
+      component: HelloWorld
     },
     {
       path: '/login',

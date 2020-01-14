@@ -28,7 +28,7 @@ export default {
         this.$router.push({
           path: '/articles',
           query: {
-            p: 1, ps: 3
+            p: 1, ps: 10
           }
         }).catch(err => err)
       } else if (key === '1-3') {

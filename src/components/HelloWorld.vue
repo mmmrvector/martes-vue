@@ -2,28 +2,18 @@
   <div class="hello">
     <Header></Header>
     <h1>{{ msg }}</h1>
-    <h2>{{ access_token }}</h2>
-    <h2>{{ user }}</h2>
   </div>
 </template>
 
 <script>
 import Header from './common/Header.vue'
 export default {
-  name: 'hello',
-  mounted () {
-    if (this.$cookies.get('token') === null || this.$cookies.get('token') === '') {
-      this.$router.push('/login')
-    }
-  },
   components: {
     Header
   },
   data () {
     return {
-      msg: 'Welcome to Martes',
-      access_token: this.$cookies.get('token'),
-      user: this.$cookies.get('user')
+      msg: 'Welcome to Martes'
     }
   }
 }

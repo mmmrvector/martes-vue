@@ -3,18 +3,14 @@
     <Header></Header>
     <el-button class="edit-button" type="primary" icon="el-icon-edit" @click="writeDownArticle"></el-button>
     <div class="a-list">
-      <el-row v-if="articles.length !== 0">
-        <el-col :span="7" v-for="(article, index) in articles" :key="index" :offset="index > 0 ? 1: 0">
-          <el-card :body-style="{ padding: '0px' }" shadow="hover" @click="getArticleDetail">
-            <div style="padding: 14px;">
-              <span>{{article.title}}</span><br/>
-              <span>by {{article.author}}</span>
-              <div class = "bottom clearfix">
-                <time class="time">创建时间: {{ new Date().toLocaleString() }}</time>
-                <el-button type="text" class="button" @click="getArticleDetail(article._id)">查看</el-button>
-              </div>
-            </div>
-          </el-card>
+      <el-row v-if="articles.length !== 0" v-for="(article, index) in articles" :key="index">
+        <el-col :span="20" offset="1">
+          <div class="article-detail" >
+            <el-link class = "el-link" :href="'http://localhost:8080/#/article/'+article._id">
+              <div class="link">{{article.title}}</div>
+            </el-link>
+            <div class="author">{{article.author}}</div>
+          </div>
         </el-col>
       </el-row>
       <el-row v-if="articles.length === 0">
@@ -34,7 +30,8 @@ export default {
   data () {
     return {
       articles: [],
-      article: 'article'
+      article: 'article',
+      hrefs: ['http://101.133.155.181/#/article/']
     }
   },
   async created () {
@@ -46,7 +43,7 @@ export default {
   methods: {
     getArticles: async function () {
       const p = this.$route.query.p || 1
-      const ps = this.$route.query.ps || 3
+      const ps = this.$route.query.ps || 10
       const res = await this.$http.get(`http://101.133.155.181:3000/article/all?p=${p}&ps=${ps}`)
       return res.data
     },
@@ -84,12 +81,29 @@ export default {
     position: relative;
     top:20px;
     padding: 2px;
+    text-align: left;
+  }
+  .el-link {
+    text-align: left;
   }
   .time {
     font-size: 13px;
     color: #999;
   }
-
+  .article-detail{
+    margin-top:10px;
+    border: 1px solid gray;
+    border-left: none;
+    border-right: none;
+  }
+  .link {
+    font-size:30px;
+    text-align: left;
+  }
+  .author{
+    position: relative;
+    text-align: right;
+  }
   .bottom {
     margin-top: 13px;
     line-height: 12px;
