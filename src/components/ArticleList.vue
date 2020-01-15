@@ -6,7 +6,7 @@
       <el-row v-if="articles.length !== 0" v-for="(article, index) in articles" :key="index">
         <el-col :span="20" offset="1">
           <div class="article-detail" >
-            <el-link class = "el-link" :href="'http://101.133.155.181:3000/article/'+article._id">
+            <el-link class = "el-link" :href="'http://www.mrvector.cn/#/article/'+article._id">
               <div class="link">{{article.title}}</div>
             </el-link>
             <div class="author">{{article.author}}</div>
