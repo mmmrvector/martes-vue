@@ -6,6 +6,8 @@ import ArticleList from '../components/ArticleList'
 import ArticleDetail from '../components/ArticleDetail'
 import Account from '../components/Account'
 import Register from '../components/Register'
+import Album from '../components/Album'
+import AlbumDetail from '../components/AlbumDetail'
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/albums',
+      name: 'albums',
+      component: Album
+    },
+    {
+      path: '/album/:id',
+      name: 'album',
+      component: AlbumDetail
     }
   ]
 })

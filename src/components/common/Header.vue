@@ -4,7 +4,7 @@
       <el-submenu index="1">
         <template slot="title">{{title}}</template>
         <el-menu-item index="1-1">articles</el-menu-item>
-        <el-menu-item index="1-2">photos</el-menu-item>
+        <el-menu-item index="1-2">albums</el-menu-item>
         <el-menu-item index="1-3">login</el-menu-item>
       </el-submenu>
       <el-submenu index="2" class="account">
@@ -31,6 +31,8 @@ export default {
             p: 1, ps: 10
           }
         }).catch(err => err)
+      } else if (key === '1-2') {
+        this.$router.push('/albums')
       } else if (key === '1-3') {
         this.$router.push('/login').catch(err => err)
       } else if (key === '2-1') {

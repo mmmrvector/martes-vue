@@ -3,7 +3,7 @@
     <!--<img src="./assets/logo.png">-->
     <div class = "header" id = "headers"></div>
     <router-view />
-    <Footer class="footer"></Footer>
+
   </div>
 </template>
 
@@ -23,9 +23,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 10px;
+  height: 100%;
 }
-  .footer {
-    position: absolute;
+  .f {
+    position: relative;
     bottom: 10px;
     text-align: center;
   }

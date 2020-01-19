@@ -39,7 +39,7 @@ export default {
         password: this.password
       }
       this.axios
-        .post('http://101.133.155.181:3000/auth/login', data)
+        .post('http://localhost:3000/auth/login', data)
         .then(res => {
           console.log(res.data.access_token)
           this.$cookies.set('token', res.data.access_token, 60 * 60 * 2)
@@ -47,7 +47,7 @@ export default {
         })
         .then(res => {
           this.axios
-            .get('http://101.133.155.181:3000/auth/profile', {
+            .get('http://localhost:3000/auth/profile', {
               headers: {
                 Authorization: `Bearer ${res}`
               }

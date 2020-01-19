@@ -4,7 +4,7 @@
     <el-button class="edit-button" type="primary" icon="el-icon-edit" @click="writeDownArticle"></el-button>
     <div class="a-list">
       <el-row v-if="articles.length !== 0" v-for="(article, index) in articles" :key="index">
-        <el-col :span="20" offset="1">
+        <el-col :span="20" :offset="1">
           <div class="article-detail" >
             <el-link class = "el-link" :href="'http://www.mrvector.cn/#/article/'+article._id">
               <div class="link">{{article.title}}</div>
