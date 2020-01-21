@@ -86,9 +86,17 @@ export default {
         { headers: {
           Authorization: `Bearer ${this.$cookies.get('token')}`
         }})
-      if (res.status === 200) {
+      if (res.status === 200 || res.status === 201) {
+        this.$message({
+          message: '图片上传成功',
+          type: 'success'
+        })
         console.log(res.data)
       } else {
+        this.$message({
+          message: '图片上传失败',
+          type: 'warning'
+        })
         console.log(res.status, res.data)
       }
     },
