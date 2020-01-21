@@ -18,6 +18,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import Header from './common/Header'
+import config from './../../static/config'
 export default {
   name: 'Login',
   data () {
@@ -39,7 +40,7 @@ export default {
         password: this.password
       }
       this.axios
-        .post('http://localhost:3000/auth/login', data)
+        .post(`${config.API_HOST}auth/login`, data)
         .then(res => {
           console.log(res.data.access_token)
           this.$cookies.set('token', res.data.access_token, 60 * 60 * 2)
@@ -47,7 +48,7 @@ export default {
         })
         .then(res => {
           this.axios
-            .get('http://localhost:3000/auth/profile', {
+            .get(`${config.API_HOST}auth/profile`, {
               headers: {
                 Authorization: `Bearer ${res}`
               }

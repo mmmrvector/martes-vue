@@ -10,7 +10,7 @@
     <el-upload
       class="upload-img"
       ref="upload"
-      action="http://localhost:3000/image/upload"
+      :action="getURL()"
       :on-remove="handleRemove"
       :file-list="files"
       :before-upload="beforeUpload"
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import config from './../../static/config'
 export default {
   name: 'upload',
   data () {
@@ -66,11 +67,14 @@ export default {
       console.log(file, fileList)
       this.files = fileList
     },
+    getURL () {
+      return `${config.API_HOST}image/upload`
+    },
     async onSuccess (response, file, fileList) {
       // send http request, add photo to album
       this.url = response.url
       console.log(this.$cookies.get('token'))
-      const res = await this.$http.post('http://localhost:3000/image/album/photo',
+      const res = await this.$http.post(`${config.API_HOST}image/album/photo`,
         {
           photo: {
             title: this.title,

@@ -11,7 +11,7 @@
     <div class="add-photo">
       <el-button type="primary" icon="el-icon-picture"  round @click="add" v-if="!addPhoto">添加图片</el-button>
       <el-button type="warning" icon="el-icon-arrow-left" round @click="cancelAdd" v-if="addPhoto">取消添加</el-button>
-      <Upload v-if="addPhoto" :album-id="albumDetail.album.id"></Upload>
+      <Upload v-if="addPhoto" :albumId="albumDetail.album.id"></Upload>
     </div>
   </div>
 </template>
@@ -19,11 +19,12 @@
 <script>
 import Header from './common/Header'
 import Upload from './Upload'
+import config from './../../static/config'
 export default {
   name: 'AlbumDetail',
   async created () {
     const id = this.$route.params.id
-    const response = await this.$http.get(`http://localhost:3000/image/album/${id}`)
+    const response = await this.$http.get(`${config.API_HOST}image/album/${id}`)
     this.albumDetail = response.data
     this.photos = this.albumDetail.photos
     this.urls = this.albumDetail.photos.map(photo => photo.url)

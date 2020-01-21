@@ -28,11 +28,13 @@
 <script>
 import Header from './common/Header'
 import Upload from './Upload'
+import config from './../../static/config'
 export default {
   name: 'album',
   async created () {
     //
-    const res = await this.$http.get('http://localhost:3000/image/albums?p=1&ps=10')
+    console.log(`${config.API_HOST}image/albums?p=1&ps=10`)
+    const res = await this.$http.get(`${config.API_HOST}image/albums?p=1&ps=10`)
     if (res.status === 200) {
       this.albums = res.data
       for (let i = 0; i < Math.ceil(this.albums.length / 3); i++) {

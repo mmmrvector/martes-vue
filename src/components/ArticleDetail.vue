@@ -20,6 +20,7 @@
 
 <script>
 import Header from './common/Header'
+import config from './../../static/config'
 // import hljs from 'highlight.js'
 // marked插件用来显示md内容
 import marked from 'marked'
@@ -33,7 +34,7 @@ export default {
       console.log('for debug', id)
       this.editorMode = true
     } else {
-      const res = await this.$http.get(`http://101.133.155.181:3000/article/${id}`).catch(err => console.log(err))
+      const res = await this.$http.get(`${config.API_HOST}article/${id}`).catch(err => console.log(err))
       if (res.status === 200) {
         this.article = res.data
       } else {
@@ -119,7 +120,7 @@ export default {
           keywords: ['martes', 'plan', 'nestjs']
         }
         const res = await this.$http
-          .post(`http://101.133.155.181:3000/article/${this.articleId}`, data, {
+          .post(`${config.API_HOST}article/${this.articleId}`, data, {
             headers: {
               Authorization: `Bearer ${this.$cookies.get('token')}`
             }
@@ -155,7 +156,7 @@ export default {
           keywords: []
         }
         const res = await this.$http
-          .post(`http://101.133.155.181:3000/article`, data, {
+          .post(`${config.API_HOST}article`, data, {
             headers: {
               Authorization: `Bearer ${this.$cookies.get('token')}`
             }

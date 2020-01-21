@@ -24,14 +24,14 @@
 
 <script>
 import Header from './common/Header'
-
+import config from './../../static/config'
 export default {
   name: 'ArticleList',
   data () {
     return {
       articles: [],
       article: 'article',
-      hrefs: ['http://101.133.155.181/#/article/']
+      hrefs: [`${config.API_HOST}/article/`]
     }
   },
   async created () {
@@ -44,7 +44,7 @@ export default {
     getArticles: async function () {
       const p = this.$route.query.p || 1
       const ps = this.$route.query.ps || 10
-      const res = await this.$http.get(`http://101.133.155.181:3000/article/all?p=${p}&ps=${ps}`)
+      const res = await this.$http.get(`${config.API_HOST}article/all?p=${p}&ps=${ps}`)
       return res.data
     },
     getArticleDetail: async function (id) {

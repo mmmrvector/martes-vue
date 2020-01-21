@@ -13,6 +13,7 @@
 
 <script>
 import Header from './common/Header'
+import config from './../../static/config'
 export default {
   name: 'register',
   data () {
@@ -50,7 +51,7 @@ export default {
           phoneNumber: this.phoneNumber,
           roles: this.roles
         }
-        const res = await this.$http.post('http://101.133.155.181:3000/user', data)
+        const res = await this.$http.post(`${config.API_HOST}user`, data)
         if (res.status === 200 || res.status === 201) {
           this.$message({
             message: 'success',
