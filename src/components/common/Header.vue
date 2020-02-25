@@ -1,16 +1,22 @@
 <template>
   <div class="header">
     <el-menu class = "navigator" mode="horizontal" @select="handleSelect">
-      <el-submenu index="1">
+      <el-menu-item index="1">
         <template slot="title">{{title}}</template>
-        <el-menu-item index="1-1">articles</el-menu-item>
-        <el-menu-item index="1-2">albums</el-menu-item>
-        <el-menu-item index="1-3">login</el-menu-item>
-      </el-submenu>
-      <el-submenu index="2" class="account">
+      </el-menu-item>
+      <el-menu-item index="2">
+        <template slot="title">文章</template>
+      </el-menu-item>
+      <el-menu-item index="3">
+        <template slot="title">相册</template>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <template slot="title">留言板</template>
+      </el-menu-item>
+      <el-submenu index="5" class="account">
         <template slot="title" icon="el-icon-user" @select="handleSelect"><i class="el-icon-user"></i></template>
-        <el-menu-item index="2-1">account</el-menu-item>
-        <el-menu-item index="2-2">logout</el-menu-item>
+        <el-menu-item index="5-1">个人信息</el-menu-item>
+        <el-menu-item index="5-2">退出登录</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -20,31 +26,33 @@ export default {
   data () {
     return {
       title: 'Martes'
-    }
+    };
   },
   methods: {
     handleSelect (key, keyPath) {
-      if (key === '1-1') {
+      if (key === '1') {
+        this.$router.push('/');
+      } else if (key === '2') {
         this.$router.push({
           path: '/articles',
           query: {
             p: 1, ps: 10
           }
-        }).catch(err => err)
-      } else if (key === '1-2') {
-        this.$router.push('/albums')
-      } else if (key === '1-3') {
-        this.$router.push('/login').catch(err => err)
-      } else if (key === '2-1') {
-        this.$router.push('/account')
-      } else if (key === '2-2') {
-        this.$cookies.remove('token')
-        this.$cookies.remove('user')
-        this.$router.push('/login')
+        }).catch(err => err);
+      } else if (key === '3') {
+        this.$router.push('/albums');
+      } else if (key === '4') {
+        this.$router.push('/comments').catch(err => err);
+      } else if (key === '5-1') {
+        this.$router.push('/account');
+      } else if (key === '5-2') {
+        this.$cookies.remove('token');
+        this.$cookies.remove('user');
+        this.$router.push('/login');
       }
     }
   }
-}
+};
 </script>
 <style scoped>
  .header {

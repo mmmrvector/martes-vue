@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Header from './common/Header.vue'
+import Header from '../components/common/Header.vue';
 export default {
   components: {
     Header
@@ -14,13 +14,16 @@ export default {
   data () {
     return {
       msg: 'Welcome to Martes'
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello{
+ text-align: center;
+}
 h1, h2 {
   font-weight: normal;
 }
