@@ -1,14 +1,16 @@
 <template>
-    <div class="article-list" style="width: 99%; height: 100%">
+    <div class="article-list" style="width: 99%; height: 99%">
       <article-card style="width: 100%;height: 50%">
-        <template v-slot:header>标题</template>
-        <template v-slot:created-at>time</template>
-        <template v-slot:article-abbreviation>article-abbreviation</template>
+        <template v-slot:header>
+          <span @click="handleClick"  style="cursor: pointer"> 醉后不知天在水</span>
+        </template>
+        <template v-slot:created-at>Feb 27, 2020</template>
+        <template v-slot:article-abbreviation>aa</template>
       </article-card>
       <article-card style="width: 100%;height: 50%">
-        <template v-slot:header>标题</template>
-        <template v-slot:created-at>time</template>
-        <template v-slot:article-abbreviation>article-abbreviation</template>
+        <template v-slot:header>满船清梦压星河</template>
+        <template v-slot:created-at>Feb 27, 2020</template>
+        <template v-slot:article-abbreviation>{{testContent}}</template>
       </article-card>
 <!--      <router-link to="/articleDetail">aaa</router-link>-->
     </div>
@@ -23,10 +25,11 @@ export default {
     return {
       total: 0,
       page: 1,
-      articleList: []
+      articleList: [],
+      testContent: 'adfadsssssssssssssssss<br>asdasdas'
     };
   },
-  components: {
+  components: {s
     ArticleCard
   },
   async created () {
@@ -54,11 +57,27 @@ export default {
       this.articleList = articleListRes.data.articles;
       this.total = articleListRes.data.total;
       console.log(this.articleList);
+    },
+    async handleClick () {
+      console.log('click test');
+      this.$router.push('/articleDetail');
+    },
+    change () {
+
     }
   }
 };
 </script>
 
 <style scoped>
+  #header {
+    color:#D2B48C;
+    font-weight: 900;
+    font-size: 30px;
+    font-family: Avenir;
+    position: relative;
+    top: 20%;
+    margin-left: 10%;
 
+  }
 </style>
