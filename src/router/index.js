@@ -3,7 +3,9 @@ import Router from 'vue-router';
 import HelloWorld from '@/pages/HelloWorld';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
-import Article from '@/pages/Article';
+import Article from '@/pages/article/Article';
+import ArticleList from '@/pages/article/ArticleList';
+import ArticleDetail from '@/pages/article/ArticleDetail';
 
 Vue.use(Router);
 
@@ -27,7 +29,20 @@ export default new Router({
     {
       path: '/articles',
       name: 'article',
-      component: Article
+      component: Article,
+      redirect: '/articleList',
+      children: [
+        {
+          path: '/articleList',
+          name: 'articleList',
+          component: ArticleList
+        },
+        {
+          path: '/articleDetail',
+          name: 'articleDetail',
+          component: ArticleDetail
+        }
+      ]
     }
   ]
 });
